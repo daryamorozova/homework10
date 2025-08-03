@@ -16,12 +16,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class ReverseStringTest {
-    private ReverseString reversedString;
 
+    private ReverseString reversedString;
     @BeforeEach
     public void setUpTest() {
         reversedString = new ReverseString();
@@ -47,15 +47,15 @@ public class ReverseStringTest {
 
     @ParameterizedTest
     @MethodSource("validStringsToReverse")
-    public void userCanReverseValidString(String initialString, String expectedString) {
+    public void userCanReverseValidString(String initialString, String expectedString){
         String actualResult = reversedString.reverse(initialString);
-
-        assertEquals(expectedString, actualResult,
-                "String reversed incorrectly!");
+        assertEquals(expectedString, actualResult, "String reversed incorrectly!");
     }
 
     @Test
-    public void userReverseNullString() {
+    public void userReverseNullString(){
         assertNull(reversedString.reverse(null), "String is null!");
     }
+
+
 }

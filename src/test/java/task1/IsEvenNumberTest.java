@@ -1,14 +1,5 @@
 package task1;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-
 //1. Проверка чётности числа
 //Напишите тесты для метода, который определяет, является ли число чётным
 
@@ -16,6 +7,14 @@ import java.util.stream.Stream;
 //Чётные и нечётные числа
 //Нулевое значение
 //Отрицательные числа
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 public class IsEvenNumberTest {
 
@@ -37,31 +36,33 @@ public class IsEvenNumberTest {
         evenNumber = new EvenNumber();
     }
 
-    public static Stream<Arguments> validData() {
+    public static Stream<Arguments> positiveData() {
         return Stream.of(
                 Arguments.of(4, true),
                 Arguments.of(-6, true),
                 Arguments.of(0, true));
     }
 
-    public static Stream<Arguments> invalidData() {
+    public static Stream<Arguments> negativeData() {
         return Stream.of(
                 Arguments.of(5, false),
                 Arguments.of(-5, false));
     }
 
     @ParameterizedTest
-    @MethodSource("validData")
+    @MethodSource("positiveData")
     public void userCanCheckEven(int initialNumber){
-        boolean result = evenNumber.isEven(initialNumber);
-        Assertions.assertTrue(result);
+        boolean actualResult = evenNumber.isEven(initialNumber);
+        Assertions.assertTrue(actualResult);
     }
 
     @ParameterizedTest
-    @MethodSource("invalidData")
+    @MethodSource("negativeData")
     public void userCanCheckNotEven(int initialNumber){
-        boolean result = evenNumber.isEven(initialNumber);
-        Assertions.assertFalse(result);
+        boolean actualResult = evenNumber.isEven(initialNumber);
+        Assertions.assertFalse(actualResult);
     }
+
+
 
 }

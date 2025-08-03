@@ -1,5 +1,6 @@
 package task5;
 
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,13 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LeapYearTests {
 
-    private LeapYear leapYear;
-
-    @BeforeEach
-    public void setUpTest() {
-       leapYear = new LeapYear();
-    }
-
     /**
      * Тесты для проверки високосного года:
      *  happy path:
@@ -40,6 +34,13 @@ public class LeapYearTests {
      *      2025 -> false
      *      <0 -> IllegalArgumentException
      */
+
+    private LeapYear leapYear;
+
+    @BeforeEach
+    public void setUpTest() {
+        leapYear = new LeapYear();
+    }
 
     public static Stream<Arguments> positiveData() {
         return Stream.of(
@@ -57,23 +58,23 @@ public class LeapYearTests {
 
     @ParameterizedTest
     @MethodSource("positiveData")
-    public void userCanCheckEven(int initialYear){
-        boolean result = leapYear.isLeapYear(initialYear);
-        Assertions.assertTrue(result);
+    public void userCanCheckIsLeap(int initialYear){
+        boolean actualResult = leapYear.isLeapYear(initialYear);
+        Assertions.assertTrue(actualResult);
     }
 
     @ParameterizedTest
     @MethodSource("negativeData")
-    public void userCanCheckNotEven(int initialYear){
-        boolean result = leapYear.isLeapYear(initialYear);
-        Assertions.assertFalse(result);
+    public void userCanCheckIsNotLeap(int initialYear){
+        boolean actualResult = leapYear.isLeapYear(initialYear);
+        Assertions.assertFalse(actualResult);
     }
 
     @Test
-    public void userCannotCheckIfNegativeYear() {
+    public void userCannotCheckIfNegativeYear(){
         assertThrows(IllegalArgumentException.class, () -> {
-            leapYear.isLeapYear(-1);
-        }, "Checking if year is negative should lead to IllegalArgumentException");
+                leapYear.isLeapYear(-1);
+    }, "Checking if year is negative should lead to IllegalArgumentException");
     }
 
 }
