@@ -1,4 +1,11 @@
 package task10;
+/**
+10. Проверка валидности номера телефона
+Напишите тесты для метода, который проверяет валидность телефонного номера:
+Тесты должны проверять:
+Корректные номера ("+1 1234567890")
+Некорректные номера ("12345", "invalid")
+*/
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,6 +14,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class CheckPhoneNumberTest {
     private CheckPhoneNumber checkPhoneNumber;
@@ -38,6 +46,7 @@ public class CheckPhoneNumberTest {
     public void countWordsWithNull() {
         assertThrows(IllegalArgumentException.class, () -> checkPhoneNumber.isValidPhoneNumber(null));
     }
+
 
 
 }

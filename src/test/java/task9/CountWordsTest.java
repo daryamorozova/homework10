@@ -2,9 +2,12 @@ package task9;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 /**
 9. Подсчёт количества слов в строке
@@ -23,42 +26,25 @@ public class CountWordsTest {
         countWords = new CountWords();
     }
 
+@ParameterizedTest
+@CsvSource({
+        "'This is a test', 4",
+        "'This   is   a   test', 4",
+        "'', 0",
+        "'     ', 0"
+})
+public void countWordsWithVariousInputs(String sentence, int expectedResult) {
+    int actualResult = countWords.countWords(sentence);
+    assertEquals(expectedResult, actualResult);
+}
 
     @Test
-    public void countWordsWithRegularSentence() {
-        String sentence = "This is a test";
-        int expectedResult = 4;
-        int actualResult = countWords.countWords(sentence);
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    public void countWordsWithSentenceWithSpaces() {
-        String sentence = "This   is   a   test";
-        int expectedResult = 4;
-        int actualResult = countWords.countWords(sentence);
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    public void countWordsWithEmpty() {
-        String sentence = "";
-        int expectedResult = 0;
-        int actualResult = countWords.countWords(sentence);
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    public void countWordsWithEmptySpaces() {
-        String sentence = "     ";
-        int expectedResult = 0;
-        int actualResult = countWords.countWords(sentence);
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    public void countWordsWithNull() {
+    public void countWordsTestWithNull(){
         assertThrows(IllegalArgumentException.class, () -> countWords.countWords(null));
     }
+
+
+
+
 
 }

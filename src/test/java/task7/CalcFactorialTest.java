@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+
 /**
 7. Факториал числа
 Напишите тесты для метода, который вычисляет факториал числа
@@ -37,15 +38,17 @@ public class CalcFactorialTest {
 
     @ParameterizedTest
     @MethodSource("positiveData")
-    public void userCanCheckCountVowels(int n, int expectedResult) {
+    public void userCanCalculateFactorial(int n, int expectedResult) {
         int actualResult = calcFactorial.factorial(n);
         assertEquals(expectedResult, actualResult);
     }
 
     @Test
-    public void userCannotCalculateIfNegativeNumber() {
+    public void userCanNotCalculateFactorialWithNegativeNumber() {
         assertThrows(IllegalArgumentException.class, () -> {
-            calcFactorial.factorial(-1);
+            calcFactorial.factorial(-2);
         }, "Calculating if number is negative should lead to IllegalArgumentException");
     }
+
+
 }

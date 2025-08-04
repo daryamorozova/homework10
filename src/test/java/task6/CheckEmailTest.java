@@ -44,16 +44,17 @@ public class CheckEmailTest {
 
     @ParameterizedTest
     @MethodSource("positiveData")
-    public void userCanCheckEmail(String initialEmail){
+    public void userCanCheckEmail(String initialEmail) {
         boolean actualResult = checkEmail.isValidEmail(initialEmail);
         Assertions.assertTrue(actualResult);
     }
 
     @ParameterizedTest
     @MethodSource("negativeData")
-    public void userCanCheckNotEven(String initialEmail){
+    public void userCanCheckInvalidEmail(String initialEmail) {
         boolean actualResult = checkEmail.isValidEmail(initialEmail);
         Assertions.assertFalse(actualResult);
     }
+
 
 }

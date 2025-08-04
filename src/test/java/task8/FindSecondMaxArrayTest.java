@@ -6,10 +6,12 @@ package task8;
 Обычные массивы
 Массив с одинаковыми числами
 Один элемент в массиве (должно выбрасываться исключение)
+ Пустой массив
 */
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,7 +35,7 @@ public class FindSecondMaxArrayTest {
     }
 
     @Test
-    public void findSecondMaxWithNegativeElementsArray() {
+    public void findSecondMaxWithNegativeElementArray() {
         int[] numbers = {-3, -6, -9, -16, -10};
         int expectedResult = -6;
         int actualResult = findSecondMaxArray.findSecondMax(numbers);
@@ -41,8 +43,14 @@ public class FindSecondMaxArrayTest {
     }
 
     @Test
+    public void findSecondMaxWithOneRepeatedElementArray() {
+        int[] numbers = {3, 3, 3, 3, 3};
+        assertThrows(NoSuchElementException.class, () -> findSecondMaxArray.findSecondMax(numbers));
+    }
+
+    @Test
     public void findSecondMaxWithSingleElementArray() {
-        int[] numbers = {16};
+        int[] numbers = {3};
         assertThrows(NoSuchElementException.class, () -> findSecondMaxArray.findSecondMax(numbers));
     }
 
@@ -51,4 +59,7 @@ public class FindSecondMaxArrayTest {
         int[] numbers = {};
         assertThrows(NoSuchElementException.class, () -> findSecondMaxArray.findSecondMax(numbers));
     }
+
+
+
 }
